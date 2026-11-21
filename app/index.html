@@ -3,20 +3,87 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cover Snap</title>
+<title>Neon Coast — Cover Studio</title>
+<link rel="icon" href="data:,">
 <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 <main class="app">
-  <section class="controls">
-    <h1>Cover Snap</h1>
-    <p>A photo and a caption, made into a square cover.</p>
-    <label>Photo <input id="photo" type="file" accept="image/*"></label>
-    <label>Caption <input id="caption" type="text" maxlength="40" value="Sunset Heist"></label>
-    <button id="export" type="button">Export PNG 1080 x 1080</button>
+  <section class="controls" aria-label="Cover editor">
+    <h1>NEON COAST</h1>
+    <p class="tagline">Cover Studio — turn any photo into poster art, offline. Your photos never leave this machine.</p>
+
+    <div class="group">
+      <span class="group-label">Photos</span>
+      <label class="file-label">Add photos <input id="photo" type="file" accept="image/*" multiple></label>
+      <div class="row">
+        <button id="sampleBtn" type="button">Use sample photos</button>
+        <button id="fillFirst" type="button">Photo 1 in all panels</button>
+      </div>
+      <div id="pool" class="pool"></div>
+    </div>
+
+    <div class="group">
+      <span class="group-label">Layout</span>
+      <div class="chips" id="layouts">
+        <button type="button" data-layout="grid4">Four Panel</button>
+        <button type="button" data-layout="hero3">Hero + Three</button>
+        <button type="button" data-layout="full">Full Bleed</button>
+        <button type="button" data-layout="nine">Nine Panel</button>
+        <button type="button" data-layout="tilt">Tilted Snaps</button>
+      </div>
+    </div>
+
+    <div class="group">
+      <span class="group-label">Colour grade</span>
+      <div class="chips" id="grades">
+        <button type="button" data-grade="sunset">Sunset</button>
+        <button type="button" data-grade="neon">Neon Night</button>
+        <button type="button" data-grade="pink">Vice Pink</button>
+        <button type="button" data-grade="teal">Teal Dawn</button>
+        <button type="button" data-grade="gold">Golden Hour</button>
+      </div>
+    </div>
+
+    <div class="group">
+      <span class="group-label">Post size</span>
+      <div class="chips" id="sizes">
+        <button type="button" data-size="1080x1080">Square 1080²</button>
+        <button type="button" data-size="1080x1350">Portrait 1080×1350</button>
+        <button type="button" data-size="1920x1080">Wide 1920×1080</button>
+      </div>
+    </div>
+
+    <div class="group">
+      <span class="group-label">Lettering</span>
+      <label>Title <input id="title" type="text" maxlength="24" value="NEON COAST"></label>
+      <label>Subtitle <input id="subtitle" type="text" maxlength="32" value="Palm Drive Nights"></label>
+      <label>Badge <input id="badge" type="text" maxlength="16" value="EST. 2026"></label>
+    </div>
+
+    <div class="group">
+      <span class="group-label">Finish</span>
+      <label class="check"><input id="grain" type="checkbox" checked> Film grain</label>
+      <label class="check"><input id="vignette" type="checkbox" checked> Vignette</label>
+      <label class="check"><input id="halftone" type="checkbox" checked> Halftone dots</label>
+    </div>
+
+    <div class="group">
+      <span class="group-label">Panels — pick a photo and zoom each one, or drag a panel to move it</span>
+      <div id="panels"></div>
+    </div>
+
+    <div class="row">
+      <button id="undo" type="button" disabled>Undo</button>
+      <button id="redo" type="button" disabled>Redo</button>
+    </div>
+    <button id="export" type="button" class="export">Export PNG</button>
     <p id="status" role="status"></p>
+    <p class="fine">Original art, lettering in Anton &amp; Pacifico (SIL Open Font License). No Rockstar Games logo, artwork or font.</p>
   </section>
-  <canvas id="cover" width="1080" height="1080" aria-label="The cover"></canvas>
+  <section class="stage" aria-label="Live preview">
+    <canvas id="cover" width="640" height="640" aria-label="The cover preview"></canvas>
+  </section>
 </main>
 <script type="module" src="./src/main.js"></script>
 </body>

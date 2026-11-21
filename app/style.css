@@ -1,12 +1,48 @@
-html, body { margin: 0; height: 100%; background: #f2f0f4; color: #1d1b22; font: 15px/1.4 system-ui, sans-serif; }
-.app { display: flex; gap: 32px; align-items: center; justify-content: center; height: 100%; padding: 24px; box-sizing: border-box; }
-.controls { display: flex; flex-direction: column; gap: 14px; width: 280px; }
-.controls h1 { margin: 0; font-size: 28px; }
-.controls p { margin: 0; color: #5c5866; }
-label { display: flex; flex-direction: column; gap: 6px; font-weight: 600; }
-input[type=text] { font: inherit; padding: 8px; border: 1px solid #c9c4d1; border-radius: 6px; }
-button { font: inherit; font-weight: 700; padding: 10px; border: 0; border-radius: 6px; background: #1d1b22; color: #fff; cursor: pointer; }
-canvas { width: min(70vh, 60vw); height: min(70vh, 60vw); box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); }
-body.shot-cover .controls { display: none; }
-body.shot-cover .app { padding: 0; }
-body.shot-cover canvas { width: 100vw; height: 100vh; box-shadow: none; }
+@font-face {
+  font-family: 'Anton';
+  src: url('./fonts/Anton-Regular.ttf') format('truetype');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pacifico';
+  src: url('./fonts/Pacifico-Regular.ttf') format('truetype');
+  font-display: swap;
+}
+
+html, body { margin: 0; min-height: 100%; background: #12081f; color: #f5eefc; font: 15px/1.45 system-ui, sans-serif; }
+.app { display: flex; gap: 28px; align-items: flex-start; justify-content: center; padding: 24px; box-sizing: border-box; }
+.controls { display: flex; flex-direction: column; gap: 16px; width: 340px; flex: none; }
+.controls h1 { margin: 0; font: 40px/1 'Anton', sans-serif; letter-spacing: 1px; background: linear-gradient(90deg, #ffe98a, #ff9e57 55%, #ff2975); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.tagline { margin: 0; color: #c9b8e0; }
+.group { display: flex; flex-direction: column; gap: 8px; padding: 12px; border: 1px solid #3d2358; border-radius: 10px; background: #1c0b33; }
+.group-label { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #ff7ad9; }
+label { display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 13px; }
+label.check { flex-direction: row; align-items: center; gap: 8px; font-weight: 400; }
+input[type=text] { font: inherit; padding: 8px; border: 1px solid #5b3a86; border-radius: 6px; background: #12081f; color: #f5eefc; }
+input[type=file] { font: inherit; }
+button { font: inherit; font-weight: 700; padding: 9px 12px; border: 1px solid #5b3a86; border-radius: 8px; background: #2b1150; color: #f5eefc; cursor: pointer; }
+button:hover:not(:disabled) { background: #3d1a68; }
+button:disabled { opacity: 0.45; cursor: default; }
+button.active { background: #ff2975; border-color: #ff2975; color: #fff; }
+button.export { padding: 13px; font-size: 17px; background: linear-gradient(90deg, #ff9e57, #ff2975); border: 0; color: #fff; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chips button { padding: 7px 10px; font-size: 13px; }
+.row { display: flex; gap: 8px; }
+.row button { flex: 1; }
+.pool { display: flex; gap: 10px; flex-wrap: wrap; }
+.thumb { display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: #c9b8e0; }
+.thumb canvas { border-radius: 6px; border: 1px solid #5b3a86; }
+.thumb button { padding: 4px 6px; font-size: 12px; }
+.panel-row { display: flex; align-items: center; gap: 8px; }
+.panel-row span { flex: none; width: 58px; font-size: 13px; }
+.panel-row select { font: inherit; padding: 5px; border-radius: 6px; background: #12081f; color: #f5eefc; border: 1px solid #5b3a86; }
+.panel-row input[type=range] { flex: 1; accent-color: #ff2975; }
+.panel-row button { padding: 5px 8px; font-size: 12px; }
+#status { margin: 0; min-height: 1.2em; color: #8fe3c0; font-size: 13px; }
+.fine { margin: 0; font-size: 12px; color: #8d7aa8; }
+.stage { position: sticky; top: 24px; }
+.stage canvas { display: block; max-width: min(640px, calc(100vw - 420px)); height: auto; box-shadow: 0 12px 44px rgba(0, 0, 0, 0.55); border-radius: 4px; }
+body.shot .controls { display: none; }
+body.shot .app { padding: 0; justify-content: center; }
+body.shot .stage { position: static; }
+body.shot .stage canvas { max-width: none; box-shadow: none; border-radius: 0; }
